@@ -10,6 +10,10 @@ import plotly.express as px
 import seaborn as sns
 from datetime import date, timedelta
 
+#Crea HTML
+#import plotly.io as pio
+#pio.write_html(fig, file='index.html', auto_open=True)
+
 #Prepara ruta de fuente de datos
 ayer = date.today() - timedelta(days=1)
 ayer = ayer.strftime('%d-%m-%Y')
@@ -154,6 +158,11 @@ fig.add_shape(dict(type= 'line', yref= 'paper', y0= 0, y1= 1, xref= 'x', x0= '20
 fig.add_annotation(text="Día sin IVA #2", x='2020-07-01', y=totalAcum['Acumulado'].max(), showarrow=False, textangle = 270)
 fig.show()
 
+#Crea archivo HTML para la visualizacion
+import plotly.io as pio
+pio.write_html(fig, file='V1.html', auto_open=True)
+
+
 #####################################################
 #Genera grafico
 fig = px.line(totalAcum, x='FechaDiag', y='NroCasosDia')
@@ -170,3 +179,5 @@ fig.add_annotation(text="Día sin IVA #2", x='2020-07-01', y=totalAcum['NroCasos
 
 fig.update_layout(title='Total Casos Por Día COVID19')
 fig.show()
+
+pio.write_html(fig, file='V2.html', auto_open=True)
